@@ -1,0 +1,267 @@
+/* Printable A4 Proforma Invoice — 794 x 1123 px (A4 @ 96dpi). */
+
+.pi-page {
+  width: 794px;
+  min-height: 1123px;
+  background: #fff;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  font-family: Calibri, Carlito, 'Segoe UI', Arial, sans-serif;
+  font-size: 12.5px;
+  line-height: 1.35;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+.pi-page *,
+.pi-page *::before,
+.pi-page *::after {
+  box-sizing: border-box;
+}
+
+.pi-header,
+.pi-footer {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.pi-footer {
+  margin-top: auto;
+}
+
+.pi-body {
+  padding: 8px 44px 0;
+}
+
+.pi-title {
+  text-align: center;
+  color: #e00000;
+  font-weight: 700;
+  font-style: italic;
+  text-decoration: underline;
+  font-size: 15px;
+  margin: 2px 0 2px;
+}
+
+.pi-bold {
+  font-weight: 700;
+}
+
+.pi-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  border: 2px solid #000;
+}
+
+.pi-table td,
+.pi-table th {
+  border: 1px solid #000;
+  padding: 3px 6px;
+  vertical-align: middle;
+}
+
+.pi-c {
+  text-align: center;
+}
+
+.pi-r {
+  text-align: right;
+}
+
+/* Buyer block */
+.pi-buyer td {
+  vertical-align: top;
+  border-bottom: 2px solid #000;
+}
+
+.pi-buyer-left {
+  padding: 4px 6px 4px 3px !important;
+  border-right: 2px solid #000 !important;
+}
+
+.pi-company {
+  font-size: 19px;
+  font-style: italic;
+  margin: 16px 0 10px;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.pi-address {
+  white-space: pre-wrap;
+  word-break: break-word;
+  min-height: 34px;
+}
+
+.pi-gst {
+  margin-top: 16px;
+}
+
+.pi-buyer-right {
+  padding: 34px 4px 4px 3px !important;
+  font-size: 13px;
+}
+
+.pi-buyer-right div + div {
+  margin-top: 24px;
+}
+
+/* Items */
+.pi-head th {
+  font-weight: 700;
+  font-size: 13px;
+  padding: 4px 4px;
+  text-align: center;
+  border-bottom: 2px solid #000;
+}
+
+.pi-head th:first-child {
+  text-align: left;
+  padding-left: 2px;
+}
+
+.pi-item td {
+  padding: 16px 6px;
+  font-size: 12.5px;
+}
+
+.pi-item td:first-child {
+  padding: 16px 2px;
+  text-align: right;
+}
+
+.pi-particular {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.pi-first-total td {
+  border-top: 2px solid #000;
+}
+
+.pi-total-row td {
+  padding: 1px 4px;
+}
+
+.pi-words {
+  font-weight: 700;
+  font-size: 13px;
+  padding-left: 3px !important;
+  border-bottom: 2px solid #000 !important;
+}
+
+.pi-grand td {
+  border-bottom: 2px solid #000;
+}
+
+/* Notes / bank / terms */
+.pi-notes {
+  padding: 4px 3px 6px !important;
+  vertical-align: top !important;
+}
+
+.pi-note-label {
+  font-weight: 400;
+  color: #333;
+}
+
+.pi-neft {
+  font-family: Cambria, Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  text-decoration: underline;
+  font-size: 12.5px;
+  margin: 1px 0 4px;
+}
+
+.pi-bank-line {
+  display: flex;
+}
+
+.pi-bank-col {
+  width: 228px;
+  flex-shrink: 0;
+}
+
+.pi-ids {
+  display: flex;
+  gap: 38px;
+  color: #222;
+  font-size: 12px;
+  margin-top: 1px;
+}
+
+.pi-terms-title {
+  font-size: 11px;
+  margin-top: 22px;
+  color: #222;
+}
+
+.pi-terms {
+  margin: 4px 0 0;
+  padding-left: 24px;
+  font-size: 12px;
+}
+
+.pi-terms li {
+  margin: 3px 0;
+  padding-left: 6px;
+}
+
+.pi-eoe {
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+.pi-sign-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: -4px;
+}
+
+.pi-sign-left {
+  padding-left: 30px;
+}
+
+.pi-stamp {
+  display: block;
+  width: 168px;
+  height: auto;
+  margin: 0 0 -8px -6px;
+}
+
+.pi-sign-right {
+  text-align: right;
+  font-size: 13px;
+  padding-bottom: 0;
+}
+
+.pi-dsig-wrap {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-top: -2px;
+}
+
+.pi-dsig {
+  width: 132px;
+  height: auto;
+  margin-right: 82px;
+}
+
+.pi-auth {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 13px;
+}
+
+.pi-computer {
+  text-align: center;
+  font-size: 13px;
+  margin: 2px 0 0;
+}

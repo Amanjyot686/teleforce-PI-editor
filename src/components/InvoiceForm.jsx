@@ -40,8 +40,8 @@ export default function InvoiceForm({ data, update, errors, totals, resolvedTaxM
 
   const duplicateItem = (index) => {
     const items = [...data.items];
-    const { description, qty, rate } = items[index];
-    items.splice(index + 1, 0, newItem({ description, qty, rate }));
+    const { description, qty, validity, rate } = items[index];
+    items.splice(index + 1, 0, newItem({ description, qty, validity, rate }));
     update({ items });
   };
 
@@ -177,6 +177,16 @@ export default function InvoiceForm({ data, update, errors, totals, resolvedTaxM
                       value={row.qty}
                       placeholder="10"
                       onChange={(e) => setItem(row.id, { qty: numeric(e.target.value) })}
+                    />
+                  </Field>
+                  <span className="op">×</span>
+                  <Field label="Validity (Mo.)" error={rowErr.validity}>
+                    <input
+                      className="input num"
+                      inputMode="decimal"
+                      value={row.validity ?? '1'}
+                      placeholder="1"
+                      onChange={(e) => setItem(row.id, { validity: numeric(e.target.value) })}
                     />
                   </Field>
                   <span className="op">×</span>

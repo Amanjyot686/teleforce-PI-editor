@@ -10,6 +10,7 @@ import {
   formatDate,
   formatINR,
   rowAmount,
+  rowValidity,
 } from '../utils/invoice.js';
 
 // The printable A4 Proforma Invoice. Rendered at 794px wide (A4 @ 96dpi).
@@ -28,14 +29,15 @@ const InvoiceDocument = forwardRef(function InvoiceDocument({ data }, ref) {
           <colgroup>
             <col style={{ width: 26 }} />
             <col />
-            <col style={{ width: 92 }} />
-            <col style={{ width: 92 }} />
-            <col style={{ width: 116 }} />
+            <col style={{ width: 76 }} />
+            <col style={{ width: 76 }} />
+            <col style={{ width: 88 }} />
+            <col style={{ width: 108 }} />
           </colgroup>
           <tbody>
             {/* Buyer block */}
             <tr className="pi-buyer">
-              <td colSpan={3} className="pi-buyer-left">
+              <td colSpan={4} className="pi-buyer-left">
                 <div className="pi-bold">Buyer's</div>
                 <div className="pi-company">{data.companyName || ' '}</div>
                 <div className="pi-address">{data.address}</div>
@@ -52,6 +54,7 @@ const InvoiceDocument = forwardRef(function InvoiceDocument({ data }, ref) {
               <th>SN</th>
               <th>Particulars</th>
               <th>Qnty/Users</th>
+              <th>Validity (Months)</th>
               <th>Rate</th>
               <th>Amount (RS)</th>
             </tr>
@@ -61,6 +64,7 @@ const InvoiceDocument = forwardRef(function InvoiceDocument({ data }, ref) {
                 <td className="pi-c">{i + 1}</td>
                 <td className="pi-particular">{row.description}</td>
                 <td className="pi-c">{row.qty}</td>
+                <td className="pi-c">{rowValidity(row)}</td>
                 <td className="pi-r">{row.rate === '' ? '' : formatINR(row.rate)}</td>
                 <td className="pi-r">{formatINR(rowAmount(row))}</td>
               </tr>
@@ -71,34 +75,34 @@ const InvoiceDocument = forwardRef(function InvoiceDocument({ data }, ref) {
               <td colSpan={2} rowSpan={totals.taxMode === 'IGST' ? 3 : 4} className="pi-words">
                 {amountInWords(totals.grandTotal)}
               </td>
-              <td colSpan={2} className="pi-c pi-bold">Total</td>
+              <td colSpan={3} className="pi-c pi-bold">Total</td>
               <td className="pi-r pi-bold">{formatINR(totals.total)}</td>
             </tr>
             {totals.taxMode === 'IGST' ? (
               <tr className="pi-total-row">
-                <td colSpan={2} className="pi-c pi-bold">IGST @ 18%</td>
+                <td colSpan={3} className="pi-c pi-bold">IGST @ 18%</td>
                 <td className="pi-r">{formatINR(totals.tax)}</td>
               </tr>
             ) : (
               <>
                 <tr className="pi-total-row">
-                  <td colSpan={2} className="pi-c pi-bold">CGST @ 9%</td>
+                  <td colSpan={3} className="pi-c pi-bold">CGST @ 9%</td>
                   <td className="pi-r">{formatINR(totals.cgst)}</td>
                 </tr>
                 <tr className="pi-total-row">
-                  <td colSpan={2} className="pi-c pi-bold">SGST @ 9%</td>
+                  <td colSpan={3} className="pi-c pi-bold">SGST @ 9%</td>
                   <td className="pi-r">{formatINR(totals.sgst)}</td>
                 </tr>
               </>
             )}
             <tr className="pi-total-row pi-grand">
-              <td colSpan={2} className="pi-c pi-bold">Grand Total (Rounded Off)</td>
+              <td colSpan={3} className="pi-c pi-bold">Grand Total (Rounded Off)</td>
               <td className="pi-r pi-bold">{formatINR(totals.grandTotal)}</td>
             </tr>
 
             {/* Constant footer block */}
             <tr>
-              <td colSpan={5} className="pi-notes">
+              <td colSpan={6} className="pi-notes">
                 <div className="pi-note-label">Note:</div>
                 <div className="pi-neft">NEFT / RTGS - Details</div>
                 <div className="pi-bold">Cheque in favour:&nbsp; {COMPANY.bank.chequeInFavour}</div>

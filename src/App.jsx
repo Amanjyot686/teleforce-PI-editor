@@ -55,6 +55,7 @@ function validate(data) {
     const e = {};
     if (!r.description.trim()) e.description = 'Required';
     if (!(toNumber(r.qty) > 0)) e.qty = 'Enter quantity';
+    if (r.validity !== undefined && !(toNumber(r.validity) > 0)) e.validity = 'Enter months';
     if (r.rate === '' || toNumber(r.rate) < 0) e.rate = 'Enter rate';
     if (Object.keys(e).length) rowErrors[r.id] = e;
   });
@@ -129,7 +130,7 @@ export default function App() {
     const { grandTotal, savedAt, ...rest } = entry;
     setData({
       ...rest,
-      items: rest.items.map((r) => newItem({ description: r.description, qty: r.qty, rate: r.rate })),
+      items: rest.items.map((r) => newItem({ description: r.description, qty: r.qty, validity: r.validity ?? '1', rate: r.rate })),
       ...(asCopy ? { piNumber: nextPiNumber(history[0]?.piNumber), date: todayISO() } : {}),
     });
     setErrors({});

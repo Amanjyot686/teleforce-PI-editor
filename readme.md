@@ -18,11 +18,11 @@ To deploy, run `npm run build` and host the `dist/` folder on any static web ser
 | Company name, address, GST No. | Shows whether the GSTIN format is valid |
 | PI number | Suggests the next number after the last downloaded PI (e.g. `GA/IT/26-27/001` → `GA/IT/26-27/002`) and moves to the new financial year automatically |
 | Date | Printed as `dd/mm/yyyy` |
-| Particulars | Any number of rows (SN is automatic). Each row has a description (can be multi-line), quantity/users and rate. Rows can be reordered, duplicated or deleted |
+| Particulars | Any number of rows (SN is automatic). Each row has a description (can be multi-line), quantity/users, validity in months and rate. Rows can be reordered, duplicated or deleted |
 
 Calculated automatically:
 
-- **Amount** for each row = quantity × rate
+- **Amount** for each row = quantity/users × rate × validity (months)
 - **Total**, **IGST @ 18%**, and **Grand Total (Rounded Off)**
 - **Amount in words** in the Indian system (lakh/crore), e.g. `INR- One lakh eighteen thousand rupees only./`
 - **Tax type**: IGST by default. If the buyer's GSTIN starts with `24` (Gujarat, the same state as the seller), it switches to CGST 9% + SGST 9%. You can also choose the tax type yourself from the dropdown in the Summary card.

@@ -69,8 +69,11 @@ export const toNumber = (value) => {
 
 const round2 = (n) => Math.round((n + Number.EPSILON) * 100) / 100;
 
+// Rows saved before the validity column existed have no `validity`; treat them as 1 month.
+export const rowValidity = (row) => (row.validity === undefined ? 1 : toNumber(row.validity));
+
 export function rowAmount(row) {
-  return round2(toNumber(row.qty) * toNumber(row.rate));
+  return round2(toNumber(row.qty) * toNumber(row.rate) * rowValidity(row));
 }
 
 export function computeTotals(items, taxMode) {
@@ -131,6 +134,7 @@ export const newItem = (patch = {}) => ({
   id: `${Date.now().toString(36)}-${idSeq++}`,
   description: '',
   qty: '',
+  validity: '1',
   rate: '',
   ...patch,
 });
